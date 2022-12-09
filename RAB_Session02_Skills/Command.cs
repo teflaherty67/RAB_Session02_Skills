@@ -39,6 +39,7 @@ namespace RAB_Session02_Skills
             myStringList.RemoveAt(0);
 
             List<string[]> myArrayList = new List<string[]>();
+            myArrayList.Add(myStringArray);
 
             foreach(string myString in myStringArray)
             {
@@ -48,6 +49,18 @@ namespace RAB_Session02_Skills
             foreach(string myString2 in myStringList)
             {
                 TaskDialog.Show("Test", myString2);
+            }
+
+            foreach (string[] myArray in myArrayList)
+            {
+                string comboString = "";
+
+                foreach(string myString3 in myArray)
+                {
+                    comboString = comboString + myString3;
+                }
+
+                Debug.Print(comboString);
             }
 
             return Result.Succeeded;
