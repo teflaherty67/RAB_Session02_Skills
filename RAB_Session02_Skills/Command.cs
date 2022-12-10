@@ -32,6 +32,7 @@ namespace RAB_Session02_Skills
             myStringArray[1] = "12312";
             myStringArray[2] = "This is the third item";
             myStringArray[3] = "This is the last item";
+            //myStringArray[4] = "adfasdfasdfasf";
 
             myStringList.Add("This is the first item");
             myStringList.Add("This is the second item");
@@ -60,7 +61,7 @@ namespace RAB_Session02_Skills
                     comboString = comboString + myString3;
                 }
 
-                Debug.Print(comboString);
+                Debug.Print("******" + comboString);
             }
 
             return Result.Succeeded;
