@@ -94,7 +94,7 @@ namespace RAB_Session02_Skills
             t.Start("Create level and sheet");
 
             // create level
-            double levelHeight = 20;
+            double levelHeight = ConvertMetersToFeet(10);
             Level myLevel = Level.Create(doc, levelHeight);
             myLevel.Name = "My Level";
 
@@ -107,6 +107,13 @@ namespace RAB_Session02_Skills
             t.Dispose();
 
             return Result.Succeeded;
+        }
+
+        internal double ConvertMetersToFeet(double meters)
+        {
+            double feet = meters * 3.28084;
+
+            return feet;
         }
     }
 }
