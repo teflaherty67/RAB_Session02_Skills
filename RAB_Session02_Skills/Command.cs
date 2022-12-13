@@ -64,6 +64,48 @@ namespace RAB_Session02_Skills
                 Debug.Print("******" + comboString);
             }
 
+            // read text file data
+            string filePath = @"S:\Personal Folders\Training Material\ArchSmarter\Revit Add-in Bootcamp\Session 02\Session 02_Room List.csv";
+            string fileText = System.IO.File.ReadAllText(filePath);
+
+            TaskDialog.Show("Text", fileText);
+
+             string[] fileArray = System.IO.File.ReadAllLines(filePath);
+
+            foreach(string rowString in fileArray)
+            {
+                string[] cellString = rowString.Split(',');
+
+                string roomNumber = cellString[0];
+                string roomName = cellString[1];
+                string roomArea = cellString[2];
+
+                //double roomAreaDouble = double.Parse(roomArea);
+
+                double roomAreaDouble2 = 0;
+                bool didItParse = double.TryParse(roomArea, out roomAreaDouble2);
+            }
+
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfCategory(BuiltInCategory.OST_TitleBlocks);
+            ElementId tblockId = collector.FirstElementId();
+
+            Transaction t = new Transaction(doc);
+            t.Start("Create level and sheet");
+
+            // create level
+            double levelHeight = 20;
+            Level myLevel = Level.Create(doc, levelHeight);
+            myLevel.Name = "My Level";
+
+            // create sheet
+            ViewSheet mySheet = ViewSheet.Create(doc, tblockId);
+            mySheet.Name = "My Sheet";
+            mySheet.SheetNumber = "A101";
+
+            t.Commit();
+            t.Dispose();
+
             return Result.Succeeded;
         }
     }
